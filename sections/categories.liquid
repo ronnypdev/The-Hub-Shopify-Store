@@ -1,3 +1,13 @@
+{% assign section_size = section.blocks.size %}
+
+{% if section_size == 1 %}
+  {% assign column_size = 'col-lg-12' %}
+{% elsif section_size == 2 %}
+  {% assign column_size = 'col-lg-6' %}
+{% else %}
+  {% assign column_size = 'col-lg-4' %}
+{% endif %}
+
 <!-- Categories Section-->
 <section class="categories">
   <div class="container">
@@ -5,27 +15,17 @@
       <h2 class="text-uppercase"><small>{{ section.settings.category_text }}</small>{{ section.settings.category_header }}</h2>
     </header>
     <div class="row text-left">
-      <div class="col-lg-4"><a href="#">
-          <div style="background-image: url(img/banner-1.jpg);" class="item d-flex align-items-end">
-            <div class="content">
-              <h3 class="h5">Men's</h3><span>New Collection</span>
+      {% for block in section.blocks %}
+        <div class="{{ column_size }}">
+          <a href="{{ block.settings.banner_link }}">
+            <div style="background: url({{ block.settings.banner_image | img_url: 'master' }}) no-repeat;" class="item d-flex align-items-end">
+              <div class="content">
+                <h3 class="h5">{{ block.settings.banner_header_text }}</h3><span>{{ block.settings.banner_text }}</span>
+              </div>
             </div>
-          </div>
-        </a></div>
-      <div class="col-lg-4"><a href="#">
-          <div style="background-image: url(img/banner-2.jpg);" class="item d-flex align-items-end">
-            <div class="content">
-              <h3 class="h5">Women's</h3><span>New Collection</span>
-            </div>
-          </div>
-        </a></div>
-      <div class="col-lg-4"><a href="#">
-          <div style="background-image: url(img/banner-3.jpg);" class="item d-flex align-items-end">
-            <div class="content">
-              <h3 class="h5">Accessories</h3><span>Sale of 20%</span>
-            </div>
-          </div>
-        </a></div>
+          </a>
+        </div>
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -45,6 +45,34 @@
         "type": "text",
         "default": "Category Text",
         "label": "Category Text"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "Banner",
+        "settings": [
+          {
+            "id": "banner_image",
+            "type": "image_picker",
+            "label": "Banner Image"
+          },
+          {
+            "id": "banner_header_text",
+            "type": "text",
+            "label": "Banner Header Text"
+          },
+          {
+            "id": "banner_text",
+            "type": "text",
+            "label": "Banner Text"
+          },
+          {
+            "id": "banner_link",
+            "type": "url",
+            "label": "Banner Link"
+          }
+        ]
       }
     ]
   }
