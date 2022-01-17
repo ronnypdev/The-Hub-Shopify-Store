@@ -6,7 +6,7 @@
     <div style="background: url({{ block.settings.slide_image | img_url: 'master' }});" class="item d-flex align-items-center has-pattern">
       <div class="container">
         <div class="row">
-          {{ block.settings.slide_text_area }}"
+          {{ block.settings.slide_text_area }}
         </div>
       </div>
     </div>
@@ -17,6 +17,8 @@
 
 {% schema %}
 {
+  "name": "Slider Settings",
+  "settings": [],
   "blocks": [
     {
       "type": "text",
@@ -31,6 +33,17 @@
           "id": "slide_text_area",
           "type": "textarea",
           "label": "Slide Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Slider",
+      "category": "Header",
+      "blocks": [
+        {
+          "type": "text"
         }
       ]
     }
