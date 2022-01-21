@@ -18,7 +18,7 @@
       {% for block in section.blocks %}
         <div class="{{ column_size }}">
           <a href="{{ block.settings.banner_link }}">
-            <div style="background: url({{ block.settings.banner_image | img_url: 'master' }}) no-repeat;" class="item d-flex align-items-end">
+            <div style="background-image: url({{ block.settings.banner_image | img_url: 'master' }});" class="item d-flex align-items-end">
               <div class="content">
                 <h3 class="h5">{{ block.settings.banner_header_text }}</h3><span>{{ block.settings.banner_text }}</span>
               </div>
