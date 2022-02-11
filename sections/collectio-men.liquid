@@ -6,7 +6,7 @@
     </header>
     <!-- Products Slider-->
     <div class="owl-carousel owl-theme products-slider">
-      {% assign collection = collections["mens"] %}
+      {% assign collection = collections[section.settings.collection] %}
 
       {% for product in collection.products %}
           <!-- item-->
@@ -19,7 +19,7 @@
                     <a href="#" class="add-to-cart">
                       <i class="fa fa-shopping-cart"></i>
                     </a>
-                    <a href="detail.html" class="visit-product active">
+                    <a href="{{ product.url }}" class="visit-product active">
                       <i class="icon-search"></i>View
                     </a>
                     <a href="#" data-toggle="modal" data-target="#exampleModal"
@@ -29,9 +29,11 @@
                 </div>
               </div>
               <div class="title">
-                <a href="detail.html">
-                  <h3 class="h6 text-uppercase no-margin-bottom">Elegant Lake</h3>
-                </a><span class="price text-muted">$40.00</span></div>
+                <a href="{{ product.url }}">
+                  <h3 class="h6 text-uppercase no-margin-bottom">{{ product.title }}</h3>
+                </a>
+                <span class="price text-muted">{{ product.price | money }}</span>
+              </div>
             </div>
           </div>
       {% endfor %}
@@ -41,7 +43,7 @@
 
 {% schema %}
   {
-    "name": "Men's Collection",
+    "name": "Collection",
     "settings": [
       {
         "id": "collection_header",
@@ -70,7 +72,7 @@
     ],
     "presets": [
      {
-       "name": "Mens Collection",
+       "name": "Collection",
        "category": "Collections",
        "blocks": [
          {
